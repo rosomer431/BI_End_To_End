@@ -1,0 +1,358 @@
+	CREATE DATABASE [Tali_Omer_DWH]
+	GO
+	
+	USE [Tali_Omer_DWH]
+	GO
+
+	CREATE TABLE [MRR_Grades] (
+    [KAssignmentFld] int,
+    [KStudentIdFld] int,
+    [KCourseFld] int,
+    [KGradeFld] float,
+    [updateddate] datetime)
+	GO
+	
+	CREATE TABLE [MRR_Assignments] (
+    [id] int,
+    [KPriorityFld] int,
+    [KDateFld] datetime,
+    [KTitleFld] nvarchar(4000),
+    [updateddate] datetime)
+	GO
+	
+	CREATE TABLE [MRR_Assignment_Types] (
+    [id] int,
+    [KNameFld] nvarchar(50),
+    [updateddate] datetime)
+	GO
+	
+	CREATE TABLE [MRR_Attendance] (
+    [id] float,
+    [KStudentIdFld] float,
+    [KPresenceFld] nvarchar(255),
+    [containerid] float,
+    [K_Absence] float,
+    [updateddate] datetime)
+	GO
+	
+	CREATE TABLE [MRR_Meetings] (
+    [KDescriptionFld] nvarchar(4000),
+    [KDayFld] nvarchar(50),
+    [KTimeStartFld] datetime,
+    [KMeetingLocationFld] nvarchar(50),
+    [KLecturerFld] int,
+    [KTitleFld] nvarchar(4000),
+    [KTypeFld] nvarchar(50),
+    [CourseId] int,
+    [id] int,
+    [updateddate] datetime)
+	GO
+	
+	CREATE TABLE [MRR_AbsenceReasons] (
+    [id] int,
+    [KReasonFld] nvarchar(15),
+    [updateddate] datetime)
+	GO
+	
+	CREATE TABLE [MRR_Course] (
+    [id] int,
+    [KClassFld] int,
+    [KTitleFld] int,
+    [KStartDateFld] datetime,
+    [KEndDateFld] datetime,
+    [KFinalProjectDateFld] datetime,
+    [KpriceFld] float,
+    [KMinStudentsNumFld] int,
+    [KMaxStudentsNumFld] int,
+    [KLocationFld] nvarchar(50),
+    [KDayPartFld] nvarchar(6),
+    [KNoOfStudentsFld] int,
+    [KCourseFormatFld] nvarchar(50),
+    [KLecturersTbl] nvarchar(4000),
+    [KHoursFld] int,
+    [updateddate] datetime)
+	GO
+	
+	CREATE TABLE [MRR_CourseTypes] (
+    [CTid] int,
+    [KTitleName] nvarchar(255),
+    [KPassingGradeFld] int,
+    [KCodeFld] nvarchar(50),
+    [KCategoryFld] int,
+    [updateddate] datetime)
+	GO
+	
+	CREATE TABLE [MRR_Categories] (
+    [CATid] int,
+    [KNameFld] nvarchar(20),
+    [updateddate] datetime)
+	GO
+	
+	CREATE TABLE [MRR_Students] (
+    [id] int,
+    [KCityFld] int,
+    [KFirstNameFld] nvarchar(50),
+    [KLastNameFld] nvarchar(50),
+    [KEmailFld] nvarchar(50),
+    [KPhoneFld] nvarchar(20),
+    [KBirthDateFld] datetime,
+    [KGenderFld] nvarchar(50),
+    [KSmsFld] nvarchar(20),
+    [KStatusFld] nvarchar(50),
+    [KCreateDateFld] datetime,
+    [KEducationsFld] nvarchar(50),
+    [KTechnologicBackgroundFld] nvarchar(4000),
+    [KCurrentJobFld] nvarchar(250),
+    [KProfessionalStatusFld] nvarchar(50),
+    [KIDFld] nvarchar(15),
+    [updateddate] datetime)
+	GO
+	
+	CREATE TABLE [MRR_Cities] (
+    [KNameFld] nvarchar(50),
+    [id] int,
+    [updateddate] datetime)
+	GO
+	
+	CREATE TABLE [MRR_Lecturers] (
+    [id] int,
+    [KCityFld] int,
+    [KFirstNameFld] nvarchar(50),
+    [KLastNameFld] nvarchar(50),
+    [KEmailFld] nvarchar(50),
+    [KPhoneFld] nvarchar(20),
+    [KBirthDateFld] datetime,
+    [KGenderFld] nvarchar(50),
+    [KStatusFld] nvarchar(50),
+    [KCourseTypesFld] nvarchar(4000),
+    [KWorkHourFld] int,
+    [updateddate] datetime)
+	GO
+	
+	CREATE TABLE [MRR_Classes] (
+    [id] int,
+    [KNameFld] nvarchar(50),
+    [updateddate] datetime)
+	GO
+	
+	CREATE TABLE [dbo].[MRR_StudentPayments](
+	[StudentId] [varchar](50) NULL,
+	[Courseld] [varchar](50) NULL,
+	[PaymentDate] [varchar](50) NULL,
+	[PaymentNo] [varchar](50) NULL,
+	[PaymentAmount] [varchar](50) NULL)
+	GO
+	
+	CREATE TABLE [dbo].[MRR_PaymentsStorno](
+	[StudentId] [varchar](50) NULL,
+	[Courseld] [varchar](50) NULL,
+	[PaymentDate] [varchar](50) NULL,
+	[STORNO] [varchar](50) NULL)
+	GO
+	
+	CREATE TABLE [dbo].[MRR_Regions](
+	[CityName] [nvarchar](255) NULL,
+	[DistrictDescription] [nvarchar](255) NULL,
+	[Area] [nvarchar](255) NULL)
+	GO
+	
+	CREATE TABLE [MRR_Registration] (
+    [id] int,
+    [KCourseFld] int,
+    [KRegistrationStatusFld] nvarchar(50),
+    [KRegistrationDateFld] datetime,
+    [updateddate] datetime,
+    [KTotalAmountFld] float,
+    [containerid] int,
+    [KPaymentSourseFld] nvarchar(50))
+	GO
+	
+	CREATE TABLE [STG_Registration] (
+    [RegistrationKey] int,
+    [CourseKey] int,
+    [RegistrationStatus] nvarchar(50),
+    [RegistrationDate] date,
+    [updateddate] datetime,
+    [PaymentAmount] float,
+    [LecturerKey] int,
+    [StudentKey] int,
+    [KPaymentSourseFld] nvarchar(50))
+	GO
+
+	CREATE TABLE [STG_Payments] (
+    [StudentId] varchar(50),
+    [Courseld] varchar(50),
+    [PaymentDate] varchar(50),
+    [PaymentNo] varchar(50),
+    [PaymentAmount] varchar(50),
+    [PaymentKey] nvarchar(150),
+    [Copy of StudentId] int,
+    [Copy of Courseld] int,
+    [Copy of PaymentDate] datetime,
+    [Copy of PaymentNo] int,
+    [Copy of PaymentAmount] money,
+    [Copy of PaymentKey] nvarchar(150))
+	GO
+
+	CREATE TABLE [STG_Payments_Storno] (
+    [StudentId] varchar(50),
+    [Courseld] varchar(50),
+    [PaymentDate] varchar(50),
+    [STORNO] varchar(50),
+    [SPaymentKey] nvarchar(150),
+    [Copy of StudentId] int,
+    [Copy of Courseld] int,
+    [Copy of PaymentDate] datetime,
+    [Copy of STORNO] varchar(50),
+    [Copy of SPaymentKey] nvarchar(150))
+	GO
+	
+	CREATE TABLE [dbo].[Dim_Students](
+	[StudentKey] [int] NULL,
+	[CityKey] [int] NULL,
+	[FirstName] [nvarchar](50) NULL,
+	[LastName] [nvarchar](50) NULL,
+	[Mail] [nvarchar](50) NULL,
+	[Phone] [nvarchar](20) NULL,
+	[BirthDate] [date] NULL,
+	[Gender] [nvarchar](50) NULL,
+	[SMS] [nvarchar](20) NULL,
+	[StudentStatus] [nvarchar](50) NULL,
+	[CreateDate] [date] NULL,
+	[Educations] [nvarchar](50) NULL,
+	[TechnologicBackground] [nvarchar](4000) NULL,
+	[CurrentJob] [nvarchar](250) NULL,
+	[ProfessionalStatus] [nvarchar](50) NULL,
+	[StudentId] [nvarchar](15) NULL,
+	[CityName] [nvarchar](50) NULL,
+	[DistrictDescription] [nvarchar](255) NULL,
+	[Area] [nvarchar](255) NULL,
+	[Update_Date] [datetime] NULL,
+	[ETL_Update_Date] datetime)
+	GO
+		
+	CREATE TABLE [dbo].[Dim_Courses](
+	[CourseKey] [int] NULL,
+	[ClassKey] [int] NULL,
+	[TitleKey] [int] NULL,
+	[CourseStartDate] [date] NULL,
+	[CourseEndDate] [date] NULL,
+	[FinalProjectDate] [date] NULL,
+	[CoursePrice] [float] NULL,
+	[MinStudents] [int] NULL,
+	[MaxStudents] [int] NULL,
+	[LecturerKey] [int] NULL,
+	[CourseLocation] [nvarchar](50) NULL,
+	[PartOfTheDay] [nvarchar](6) NULL,
+	[TotalStudents] [int] NULL,
+	[CourseFormat] [nvarchar](50) NULL,
+	[Hours] [int] NULL,
+	[CourseTypeKey] [int] NULL,
+	[TitleName] [nvarchar](255) NULL,
+	[PassingGrade] [int] NULL,
+	[CourseCode] [nvarchar](50) NULL,
+	[CategoryKey] [int] NULL,
+	[CategoryName] [nvarchar](20) NULL,
+	[Update_Date] [datetime] NULL,
+	[ETL_Update_Date] datetime)
+	GO
+	
+	CREATE TABLE [dbo].[Dim_Lecturers](
+	[LecturerKey] [int] NULL,
+	[CityKey] [int] NULL,
+	[FirstName] [nvarchar](50) NULL,
+	[LastName] [nvarchar](50) NULL,
+	[Mail] [nvarchar](50) NULL,
+	[Phone] [nvarchar](20) NULL,
+	[BirthDate] [date] NULL,
+	[Gender] [nvarchar](50) NULL,
+	[LecturerStatus] [nvarchar](50) NULL,
+	[WorkHours] [int] NULL,
+	[Courses] [nvarchar](4000) NULL,
+	[Update_Date] [datetime] NULL,
+	[ETL_Uodate_Date] datetime)
+	GO
+	
+	CREATE TABLE [Dim_Classes] (
+    [ClassKey] int,
+    [Descrtion] nvarchar(50),
+    [Update_Date] datetime,
+	[ETL_Uodate_Date] datetime)
+	GO
+	
+	CREATE TABLE [Fact_Grades] (
+    [AssignmentKey] int,
+    [StudentIdKey] int,
+    [CourseKey] int,
+    [Grade] float,
+    [Priority] int,
+    [AssignmentDate] date,
+    [AssignmentName] nvarchar(50),
+    [LecturerKey] int,
+    [Update_Date] datetime,
+	[ETL_Uodate_Date] datetime)
+	GO
+	
+	CREATE TABLE [Fact_Attendance] (
+    [AttendanceKey] float,
+    [StudentKey] float,
+    [AttendanceStatus] nvarchar(255),
+    [MeetingKey] float,
+    [MeetingDescription] nvarchar(4000),
+    [MeetingDay] nvarchar(50),
+    [MeetingDateStart] datetime,
+    [ClassKey] nvarchar(50),
+    [LecturerKey] int,
+    [Course] nvarchar(4000),
+    [MeetingType] nvarchar(50),
+    [AbsenceReason] nvarchar(15),
+    [CourseKey] int,
+    [UpdateDate] datetime,
+	[ETL_Uodate_Date] datetime)
+	GO
+	
+	CREATE TABLE [Fact_Income] (
+    [PaymentKey] nvarchar(150),
+    [StudentId] varchar(50),
+    [Courseld] varchar(50),
+    [PaymentAmount] float,
+    [PaymentDate] varchar(50),
+    [Storno] varchar(50),
+	[ETL_Uodate_Date] datetime)
+	GO
+
+	CREATE TABLE [Fact_Registration] (
+    [RegistrationKey] int,
+    [CourseKey] int,
+    [RegistrationStatus] nvarchar(50),
+    [RegistrationDate] date,
+    [updateddate] datetime,
+    [PaymentAmount] float,
+    [LecturerKey] int,
+    [StudentKey] int,
+    [PaymentType] nvarchar(50),
+	[ETL_Uodate_Date] datetime)
+	GO
+	
+	CREATE TABLE [Conversion_Error_Output] (
+    [StudentId] varchar(50),
+    [Courseld] varchar(50),
+    [PaymentDate] varchar(50),
+    [PaymentNo] varchar(50),
+    [PaymentAmount] varchar(50),
+    [PaymentKey] nvarchar(150),
+    [ErrorCode] int,
+    [ErrorColumn] int)
+	GO
+	
+	CREATE TABLE [dbo].[Conversion_Error_Output_2](
+	[StudentId] [varchar](50),
+	[Courseld] [varchar](50),
+	[PaymentDate] [varchar](50),
+	[STORNO] [varchar](50),
+	[SPaymentKey] [nvarchar](150),
+	[ErrorCode] [int],
+	[ErrorColumn] [int])
+	GO
+	
+	
